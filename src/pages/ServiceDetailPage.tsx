@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
 import { motion } from 'framer-motion'
-import { Calendar, CheckCircle2, Clock, IndianRupee, ArrowLeft, Sparkles } from 'lucide-react'
+import { Calendar, CheckCircle2, Clock, ArrowLeft, Sparkles } from 'lucide-react'
 import { useSound } from '../components/providers/SoundProvider'
 
 interface ServiceDetail {
@@ -12,7 +12,6 @@ interface ServiceDetail {
   longDescription: string
   image: string
   gallery: string[]
-  priceRange: string
   duration: string
   inclusions: string[]
   gradient: string
@@ -31,7 +30,6 @@ export const serviceDetailsData: Record<string, ServiceDetail> = {
       'https://images.unsplash.com/photo-1504196606672-aef5c9cefc92?q=80&w=600&auto=format&fit=crop',
       'https://images.unsplash.com/photo-1513151233558-d860c5398176?q=80&w=600&auto=format&fit=crop',
     ],
-    priceRange: '₹3,000 - ₹15,000',
     duration: '2 - 3 Hours setup',
     inclusions: [
       'Custom organic balloon arch / garland (up to 20ft)',
@@ -54,7 +52,6 @@ export const serviceDetailsData: Record<string, ServiceDetail> = {
       'https://images.unsplash.com/photo-1464366400600-7168b8af9bc3?q=80&w=600&auto=format&fit=crop',
       'https://images.unsplash.com/photo-1527529482837-4698179dc6ce?q=80&w=600&auto=format&fit=crop',
     ],
-    priceRange: '₹5,000 - ₹20,000',
     duration: '3 - 4 Hours setup',
     inclusions: [
       'Central themed cake table with custom table runners',
@@ -77,7 +74,6 @@ export const serviceDetailsData: Record<string, ServiceDetail> = {
       'https://images.unsplash.com/photo-1502086223501-7ea6ecd79368?q=80&w=600&auto=format&fit=crop',
       'https://images.unsplash.com/photo-1527529482837-4698179dc6ce?q=80&w=600&auto=format&fit=crop',
     ],
-    priceRange: '₹12,000 - ₹45,000',
     duration: '4 - 6 Hours setup',
     inclusions: [
       'Multi-layered 3D backdrop panel board (up to 16ft wide)',
@@ -100,7 +96,6 @@ export const serviceDetailsData: Record<string, ServiceDetail> = {
       'https://images.unsplash.com/photo-1513151233558-d860c5398176?q=80&w=600&auto=format&fit=crop',
       'https://images.unsplash.com/photo-1533174072545-7a4b6ad7a6c3?q=80&w=600&auto=format&fit=crop',
     ],
-    priceRange: '₹6,000 - ₹18,000',
     duration: '3 - 4 Hours setup',
     inclusions: [
       'HD custom printed background banner (up to 10ft)',
@@ -123,7 +118,6 @@ export const serviceDetailsData: Record<string, ServiceDetail> = {
       'https://images.unsplash.com/photo-1530103862676-de8c9debad1d?q=80&w=600&auto=format&fit=crop',
       'https://images.unsplash.com/photo-1517457373958-b7bdd4587205?q=80&w=600&auto=format&fit=crop',
     ],
-    priceRange: '₹10,000 - ₹50,000+',
     duration: '4 - 6 Hours setup',
     inclusions: [
       'Consultation & unique custom 2D draft review',
@@ -146,7 +140,6 @@ export const serviceDetailsData: Record<string, ServiceDetail> = {
       'https://images.unsplash.com/photo-1513151233558-d860c5398176?q=80&w=600&auto=format&fit=crop',
       'https://images.unsplash.com/photo-1504196606672-aef5c9cefc92?q=80&w=600&auto=format&fit=crop',
     ],
-    priceRange: '₹4,000 - ₹12,000',
     duration: '2 - 3 Hours setup',
     inclusions: [
       'Circle backdrop frame or grass-panel wall setup',
@@ -280,21 +273,6 @@ export const ServiceDetailPage: React.FC = () => {
 
               {/* Specs Box */}
               <div className="p-6 rounded-2xl glass-card border border-white/20 shadow-sm flex flex-col gap-4 mb-8">
-                {/* Price */}
-                <div className="flex items-center gap-3">
-                  <div className={`w-9 h-9 rounded-lg bg-gradient-to-br ${service.gradient} text-white flex items-center justify-center shadow-sm`}>
-                    <IndianRupee className="w-5 h-5" />
-                  </div>
-                  <div>
-                    <h4 className="text-[10px] uppercase font-extrabold tracking-wider text-gray-400 dark:text-gray-500 leading-none mb-1">
-                      Estimated Investment
-                    </h4>
-                    <span className="text-base font-bold text-slate-800 dark:text-white leading-none">
-                      {service.priceRange}
-                    </span>
-                  </div>
-                </div>
-
                 {/* Duration */}
                 <div className="flex items-center gap-3">
                   <div className={`w-9 h-9 rounded-lg bg-gradient-to-br ${service.gradient} text-white flex items-center justify-center shadow-sm`}>

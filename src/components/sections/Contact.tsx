@@ -47,7 +47,19 @@ export const Contact: React.FC = () => {
       const customEvent = e as CustomEvent
       const themeValue = customEvent.detail
       if (themeValue) {
-        setValue('theme', themeValue)
+        let mappedValue = ""
+        if (themeValue.includes("Balloon")) mappedValue = "Balloon Decorations"
+        else if (themeValue.includes("Birthday")) mappedValue = "Birthday Decorations"
+        else if (themeValue.includes("3D Theme")) mappedValue = "3D Theme Decorations"
+        else if (themeValue.includes("2D Theme")) mappedValue = "2D Theme Decorations"
+        else if (themeValue.includes("Custom")) mappedValue = "Custom Decorations"
+        else if (themeValue.includes("Background") || themeValue.includes("Backdrop") || themeValue.includes("Booth")) {
+          mappedValue = "Backdrop/Photo Booth"
+        }
+        
+        if (mappedValue) {
+          setValue('theme', mappedValue)
+        }
       }
     }
     window.addEventListener('select-theme', handleSelectTheme)
@@ -338,6 +350,7 @@ export const Contact: React.FC = () => {
                       >
                         <option value="" className="text-slate-800">Select Theme Type</option>
                         <option value="Balloon Decorations" className="text-slate-800">🎈 Balloon Decorations</option>
+                        <option value="Birthday Decorations" className="text-slate-800">🎂 Birthday Decorations</option>
                         <option value="2D Theme Decorations" className="text-slate-800">🎨 2D Character Theme</option>
                         <option value="3D Theme Decorations" className="text-slate-800">🏰 Immersive 3D Theme</option>
                         <option value="Custom Decorations" className="text-slate-800">✨ Custom Celebration Setup</option>
