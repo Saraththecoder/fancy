@@ -1,10 +1,12 @@
 import React from 'react'
 import { motion } from 'framer-motion'
+import { useNavigate } from 'react-router-dom'
 import { Calendar, Compass, Star, Gift, Sparkles } from 'lucide-react'
 import confetti from 'canvas-confetti'
 import { useSound } from '../providers/SoundProvider'
 
 export const Hero: React.FC = () => {
+  const navigate = useNavigate()
   const { playClick, playHover } = useSound()
 
   // Trigger confetti burst on click
@@ -38,36 +40,16 @@ export const Hero: React.FC = () => {
     
     frame()
 
-    // Smooth scroll to Contact Form
+    // Navigate to Contact Form page
     setTimeout(() => {
-      const contactSec = document.getElementById('contact')
-      if (contactSec) {
-        const offset = 80
-        const bodyRect = document.body.getBoundingClientRect().top
-        const elementRect = contactSec.getBoundingClientRect().top
-        const elementPosition = elementRect - bodyRect
-        window.scrollTo({
-          top: elementPosition - offset,
-          behavior: 'smooth'
-        })
-      }
+      navigate('/contact')
     }, 400)
   }
 
-  // Scroll to services
+  // Navigate to services page
   const scrollToServices = () => {
     playClick()
-    const servicesSec = document.getElementById('services')
-    if (servicesSec) {
-      const offset = 80
-      const bodyRect = document.body.getBoundingClientRect().top
-      const elementRect = servicesSec.getBoundingClientRect().top
-      const elementPosition = elementRect - bodyRect
-      window.scrollTo({
-        top: elementPosition - offset,
-        behavior: 'smooth'
-      })
-    }
+    navigate('/services')
   }
 
   return (

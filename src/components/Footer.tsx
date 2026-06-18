@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 import { ArrowUp, Phone, Mail, MapPin, MessageSquare } from 'lucide-react'
 import { useSound } from './providers/SoundProvider'
 
@@ -11,22 +12,6 @@ export const Footer: React.FC = () => {
       top: 0,
       behavior: 'smooth',
     })
-  }
-
-  const handleLinkClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
-    e.preventDefault()
-    playClick()
-    const targetElement = document.getElementById(href.substring(1))
-    if (targetElement) {
-      const offset = 80
-      const bodyRect = document.body.getBoundingClientRect().top
-      const elementRect = targetElement.getBoundingClientRect().top
-      const elementPosition = elementRect - bodyRect
-      window.scrollTo({
-        top: elementPosition - offset,
-        behavior: 'smooth',
-      })
-    }
   }
 
   const currentYear = new Date().getFullYear()
@@ -42,9 +27,9 @@ export const Footer: React.FC = () => {
           
           {/* Brand Info (col-span-5) */}
           <div className="md:col-span-5 flex flex-col items-start gap-4">
-            <a
-              href="#home"
-              onClick={(e) => handleLinkClick(e, '#home')}
+            <Link
+              to="/"
+              onClick={() => playClick()}
               onMouseEnter={playHover}
               className="flex items-center gap-2 font-display font-extrabold text-2xl tracking-wide text-white group"
             >
@@ -54,7 +39,7 @@ export const Footer: React.FC = () => {
               <span>
                 Raju <span className="text-primary">Events</span>
               </span>
-            </a>
+            </Link>
             <p className="text-sm text-gray-500 leading-relaxed max-w-sm font-body">
               Making every birthday magical with premium decorations and customized party setups for over 10 years across Andhra Pradesh.
             </p>
@@ -104,22 +89,22 @@ export const Footer: React.FC = () => {
             </h4>
             <ul className="space-y-2.5 text-sm">
               {[
-                { label: 'Home', href: '#home' },
-                { label: 'About', href: '#about' },
-                { label: 'Services', href: '#services' },
-                { label: 'Why Us', href: '#why-us' },
-                { label: 'Process', href: '#process' },
-                { label: 'Gallery', href: '#gallery' },
+                { label: 'Home', href: '/' },
+                { label: 'About', href: '/about' },
+                { label: 'Services', href: '/services' },
+                { label: 'Why Us', href: '/why-us' },
+                { label: 'Process', href: '/process' },
+                { label: 'Gallery', href: '/gallery' },
               ].map((link) => (
                 <li key={link.href}>
-                  <a
-                    href={link.href}
-                    onClick={(e) => handleLinkClick(e, link.href)}
+                  <Link
+                    to={link.href}
+                    onClick={() => playClick()}
                     onMouseEnter={playHover}
                     className="hover:text-primary transition-colors cursor-none"
                   >
                     {link.label}
-                  </a>
+                  </Link>
                 </li>
               ))}
             </ul>

@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import * as z from 'zod'
+import { useLocation } from 'react-router-dom'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Phone, Mail, MapPin, Clock, MessageCircle, Send, CheckCircle2 } from 'lucide-react'
 import confetti from 'canvas-confetti'
@@ -22,6 +23,7 @@ type ContactFormData = z.infer<typeof contactSchema>
 export const Contact: React.FC = () => {
   const [isSubmitted, setIsSubmitted] = useState(false)
   const { playHover, playClick } = useSound()
+  const location = useLocation()
 
   const {
     register,
@@ -40,6 +42,29 @@ export const Contact: React.FC = () => {
       message: '',
     }
   })
+
+  // Prefill theme if passed in React Router state
+  React.useEffect(() => {
+    if (location.state) {
+      const stateObj = location.state as any
+      if (stateObj.preselectTheme) {
+        const themeValue = stateObj.preselectTheme
+        let mappedValue = ""
+        if (themeValue.includes("Balloon")) mappedValue = "Balloon Decorations"
+        else if (themeValue.includes("Birthday")) mappedValue = "Birthday Decorations"
+        else if (themeValue.includes("3D Theme")) mappedValue = "3D Theme Decorations"
+        else if (themeValue.includes("2D Theme")) mappedValue = "2D Theme Decorations"
+        else if (themeValue.includes("Custom")) mappedValue = "Custom Decorations"
+        else if (themeValue.includes("Background") || themeValue.includes("Backdrop") || themeValue.includes("Booth")) {
+          mappedValue = "Backdrop/Photo Booth"
+        }
+        
+        if (mappedValue) {
+          setValue('theme', mappedValue)
+        }
+      }
+    }
+  }, [location, setValue])
 
   // Listen for custom "select-theme" event dispatched from Services cards
   React.useEffect(() => {

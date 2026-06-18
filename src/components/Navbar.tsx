@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Sun, Moon, Volume2, VolumeX, Menu, X } from 'lucide-react'
-import { useNavigate, useLocation } from 'react-router-dom'
+import { useLocation, Link } from 'react-router-dom'
 import { useSound } from './providers/SoundProvider'
 
 interface NavLink {
@@ -10,52 +10,32 @@ interface NavLink {
 }
 
 const navLinks: NavLink[] = [
-  { label: 'Home', href: '#home' },
-  { label: 'About', href: '#about' },
-  { label: 'Services', href: '#services' },
-  { label: 'Why Us', href: '#why-us' },
-  { label: 'Process', href: '#process' },
-  { label: 'Gallery', href: '#gallery' },
-  { label: 'Testimonials', href: '#testimonials' },
-  { label: 'FAQ', href: '#faq' },
-  { label: 'Contact', href: '#contact' },
+  { label: 'Home', href: '/' },
+  { label: 'About', href: '/about' },
+  { label: 'Services', href: '/services' },
+  { label: 'Why Us', href: '/why-us' },
+  { label: 'Process', href: '/process' },
+  { label: 'Gallery', href: '/gallery' },
+  { label: 'Testimonials', href: '/testimonials' },
+  { label: 'FAQ', href: '/faq' },
+  { label: 'Contact', href: '/contact' },
 ]
 
 export const Navbar: React.FC = () => {
-  const [activeSection, setActiveSection] = useState('home')
   const [isScrolled, setIsScrolled] = useState(false)
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const [darkMode, setDarkMode] = useState(false)
   const { soundEnabled, setSoundEnabled, playHover, playClick } = useSound()
-  const navigate = useNavigate()
   const location = useLocation()
 
-  // Track active section and scroll state
+  // Track scroll state
   useEffect(() => {
-    if (location.pathname !== '/') return
     const handleScroll = () => {
-      // Toggle scrolled class
       setIsScrolled(window.scrollY > 50)
-
-      // Spy scroll and update active link
-      const scrollPosition = window.scrollY + 120
-      for (const link of navLinks) {
-        const id = link.href.substring(1)
-        const element = document.getElementById(id)
-        if (element) {
-          const offsetTop = element.offsetTop
-          const offsetHeight = element.offsetHeight
-          if (scrollPosition >= offsetTop && scrollPosition < offsetTop + offsetHeight) {
-            setActiveSection(id)
-            break
-          }
-        }
-      }
     }
-
     window.addEventListener('scroll', handleScroll)
     return () => window.removeEventListener('scroll', handleScroll)
-  }, [location])
+  }, [])
 
   // Dark Mode toggle handler
   useEffect(() => {
@@ -83,32 +63,6 @@ export const Navbar: React.FC = () => {
     }
   }
 
-  // Smooth scroll helper
-  const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
-    e.preventDefault()
-    playClick()
-    setMobileMenuOpen(false)
-    const targetId = href.substring(1)
-
-    if (location.pathname === '/') {
-      const targetElement = document.getElementById(targetId)
-      if (targetElement) {
-        const offset = 80 // navbar height
-        const bodyRect = document.body.getBoundingClientRect().top
-        const elementRect = targetElement.getBoundingClientRect().top
-        const elementPosition = elementRect - bodyRect
-        const offsetPosition = elementPosition - offset
-
-        window.scrollTo({
-          top: offsetPosition,
-          behavior: 'smooth',
-        })
-      }
-    } else {
-      navigate('/', { state: { scrollTo: targetId } })
-    }
-  }
-
   return (
     <>
       <header
@@ -120,9 +74,9 @@ export const Navbar: React.FC = () => {
       >
         <div className="max-w-7xl mx-auto px-6 flex items-center justify-between">
           {/* Logo */}
-          <a
-            href="#home"
-            onClick={(e) => handleNavClick(e, '#home')}
+          <Link
+            to="/"
+            onClick={() => { playClick(); setMobileMenuOpen(false); }}
             onMouseEnter={playHover}
             className="flex items-center gap-2 group font-display font-extrabold text-2xl tracking-wide dark:text-white"
           >
@@ -135,18 +89,18 @@ export const Navbar: React.FC = () => {
             <span>
               Raju <span className="text-primary">Events</span>
             </span>
-          </a>
+          </Link>
 
           {/* Desktop Nav Links */}
           <nav className="hidden lg:flex items-center gap-8">
             <ul className="flex items-center gap-6">
               {navLinks.map((link) => {
-                const isActive = activeSection === link.href.substring(1)
+                const isActive = location.pathname === link.href
                 return (
                   <li key={link.href}>
-                    <a
-                      href={link.href}
-                      onClick={(e) => handleNavClick(e, link.href)}
+                    <Link
+                      to={link.href}
+                      onClick={() => { playClick(); setMobileMenuOpen(false); }}
                       onMouseEnter={playHover}
                       className={`relative font-medium text-sm transition-colors duration-200 py-2 ${
                         isActive
@@ -162,7 +116,7 @@ export const Navbar: React.FC = () => {
                           transition={{ type: 'spring', stiffness: 380, damping: 30 }}
                         />
                       )}
-                    </a>
+                    </Link>
                   </li>
                 )
               })}
@@ -255,7 +209,7 @@ export const Navbar: React.FC = () => {
                 className="flex flex-col gap-4 text-center"
               >
                 {navLinks.map((link) => {
-                  const isActive = activeSection === link.href.substring(1)
+                  const isActive = location.pathname === link.href
                   return (
                     <motion.li
                       variants={{
@@ -264,9 +218,9 @@ export const Navbar: React.FC = () => {
                       }}
                       key={link.href}
                     >
-                      <a
-                        href={link.href}
-                        onClick={(e) => handleNavClick(e, link.href)}
+                      <Link
+                        to={link.href}
+                        onClick={() => { playClick(); setMobileMenuOpen(false); }}
                         className={`text-xl font-display font-bold block py-2 ${
                           isActive
                             ? 'text-primary dark:text-secondary'
@@ -274,7 +228,7 @@ export const Navbar: React.FC = () => {
                         }`}
                       >
                         {link.label}
-                      </a>
+                      </Link>
                     </motion.li>
                   )
                 })}
@@ -288,13 +242,13 @@ export const Navbar: React.FC = () => {
               transition={{ delay: 0.35 }}
               className="px-4 mb-6"
             >
-              <a
-                href="#contact"
-                onClick={(e) => handleNavClick(e, '#contact')}
+              <Link
+                to="/contact"
+                onClick={() => { playClick(); setMobileMenuOpen(false); }}
                 className="w-full py-3.5 rounded-full font-bold text-white text-center gradient-pink-purple shadow-lg shadow-primary/20 flex items-center justify-center gap-2"
               >
                 Book Raju Events Now
-              </a>
+              </Link>
             </motion.div>
 
             <div className="text-center text-xs text-gray-400 mt-2">

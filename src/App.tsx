@@ -12,7 +12,15 @@ import { FloatingActions } from './components/ui/FloatingActions'
 
 // Pages
 import { Home } from './pages/Home'
+import { AboutPage } from './pages/AboutPage'
+import { ServicesPage } from './pages/ServicesPage'
 import { ServiceDetailPage } from './pages/ServiceDetailPage'
+import { WhyChooseUsPage } from './pages/WhyChooseUsPage'
+import { ProcessPage } from './pages/ProcessPage'
+import { GalleryPage } from './pages/GalleryPage'
+import { TestimonialsPage } from './pages/TestimonialsPage'
+import { FAQPage } from './pages/FAQPage'
+import { ContactPage } from './pages/ContactPage'
 
 // CSS Imports
 import './App.css'
@@ -74,7 +82,15 @@ const MainContent: React.FC = () => {
             <main className="flex-grow">
               <Routes>
                 <Route path="/" element={<Home />} />
+                <Route path="/about" element={<AboutPage />} />
+                <Route path="/services" element={<ServicesPage />} />
                 <Route path="/services/:slug" element={<ServiceDetailPage />} />
+                <Route path="/why-us" element={<WhyChooseUsPage />} />
+                <Route path="/process" element={<ProcessPage />} />
+                <Route path="/gallery" element={<GalleryPage />} />
+                <Route path="/testimonials" element={<TestimonialsPage />} />
+                <Route path="/faq" element={<FAQPage />} />
+                <Route path="/contact" element={<ContactPage />} />
               </Routes>
             </main>
 

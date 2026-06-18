@@ -180,8 +180,8 @@ export const ServiceDetailPage: React.FC = () => {
 
   const handleBookNow = () => {
     playClick()
-    // Navigate home, and pre-select this service in contact form
-    navigate('/', { state: { scrollTo: 'contact', preselectTheme: service.title } })
+    // Navigate to contact, and pre-select this service in contact form
+    navigate('/contact', { state: { preselectTheme: service.title } })
   }
 
   return (
