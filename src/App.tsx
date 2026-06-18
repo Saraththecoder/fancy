@@ -69,7 +69,7 @@ const MainContent: React.FC = () => {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.8 }}
-            className="flex flex-col min-h-screen relative"
+            className="flex flex-col min-h-screen relative overflow-x-hidden w-full"
           >
             {/* Header Navigation */}
             <Navbar />

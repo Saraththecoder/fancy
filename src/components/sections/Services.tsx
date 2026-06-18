@@ -218,7 +218,7 @@ export const Services: React.FC = () => {
   return (
     <section
       id="services"
-      className="relative py-24 bg-brand-bg dark:bg-dark-bg transition-colors duration-300"
+      className="relative py-24 bg-brand-bg dark:bg-dark-bg transition-colors duration-300 overflow-hidden"
     >
       {/* Background Blobs */}
       <div className="absolute left-1/10 top-1/4 w-[400px] h-[400px] bg-primary/5 rounded-full blur-[100px] pointer-events-none" />

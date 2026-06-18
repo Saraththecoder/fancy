@@ -193,7 +193,7 @@ export const Contact: React.FC = () => {
                 href="tel:9948102259"
                 onMouseEnter={playHover}
                 onClick={playClick}
-                className="p-4 rounded-2xl glass-card border border-white/20 shadow-sm flex items-center justify-center gap-2 font-bold text-sm text-slate-800 dark:text-white hover:border-primary/50 transition-colors cursor-none interactive-card"
+                className="p-3.5 sm:p-4 rounded-2xl glass-card border border-white/20 shadow-sm flex items-center justify-center gap-2 font-bold text-xs sm:text-sm text-slate-800 dark:text-white hover:border-primary/50 transition-colors cursor-none interactive-card"
               >
                 <Phone className="w-4 h-4 text-primary" />
                 <span>Call Now</span>
@@ -204,7 +204,7 @@ export const Contact: React.FC = () => {
                 rel="noopener noreferrer"
                 onMouseEnter={playHover}
                 onClick={playClick}
-                className="p-4 rounded-2xl bg-emerald-500 hover:bg-emerald-600 shadow-lg shadow-emerald-500/10 flex items-center justify-center gap-2 font-bold text-sm text-white transition-all cursor-none interactive-card"
+                className="p-3.5 sm:p-4 rounded-2xl bg-emerald-500 hover:bg-emerald-600 shadow-lg shadow-emerald-500/10 flex items-center justify-center gap-2 font-bold text-xs sm:text-sm text-white transition-all cursor-none interactive-card"
               >
                 <MessageCircle className="w-4 h-4 fill-current" />
                 <span>WhatsApp</span>

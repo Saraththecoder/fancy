@@ -214,7 +214,7 @@ export const Hero: React.FC = () => {
             <button
               onClick={triggerConfetti}
               onMouseEnter={playHover}
-              className="relative px-8 py-4 rounded-full font-bold text-white gradient-pink-purple overflow-hidden shadow-lg shadow-primary/20 hover:shadow-primary/40 hover:scale-[1.03] active:scale-[0.98] transition-all duration-300 group flex items-center justify-center gap-2 cursor-none"
+              className="w-full sm:w-auto relative px-8 py-4 rounded-full font-bold text-white gradient-pink-purple overflow-hidden shadow-lg shadow-primary/20 hover:shadow-primary/40 hover:scale-[1.03] active:scale-[0.98] transition-all duration-300 group flex items-center justify-center gap-2 cursor-none"
             >
               <Calendar className="w-5 h-5 transition-transform group-hover:scale-110" />
               <span>Book Now</span>
@@ -225,7 +225,7 @@ export const Hero: React.FC = () => {
             <button
               onClick={scrollToServices}
               onMouseEnter={playHover}
-              className="px-8 py-4 rounded-full font-bold text-slate-800 dark:text-white border border-gray-300 dark:border-gray-700 hover:bg-white/10 dark:hover:bg-white/5 hover:scale-[1.03] active:scale-[0.98] transition-all duration-300 flex items-center justify-center gap-2 cursor-none"
+              className="w-full sm:w-auto px-8 py-4 rounded-full font-bold text-slate-800 dark:text-white border border-gray-300 dark:border-gray-700 hover:bg-white/10 dark:hover:bg-white/5 hover:scale-[1.03] active:scale-[0.98] transition-all duration-300 flex items-center justify-center gap-2 cursor-none"
             >
               <Compass className="w-5 h-5" />
               <span>Explore Services</span>

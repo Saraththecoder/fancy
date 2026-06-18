@@ -233,9 +233,9 @@ export const Navbar: React.FC = () => {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
             transition={{ duration: 0.3 }}
-            className="fixed inset-0 z-[998] lg:hidden glass-effect pt-24 pb-8 px-6 flex flex-col justify-between"
+            className="fixed inset-0 z-[998] lg:hidden glass-effect pt-24 pb-8 px-6 flex flex-col justify-between overflow-y-auto"
           >
-            <nav className="flex flex-col gap-6 items-center justify-center flex-grow">
+            <nav className="flex flex-col gap-6 items-center justify-center flex-grow py-6">
               <motion.ul
                 variants={{
                   open: { transition: { staggerChildren: 0.05, delayChildren: 0.1 } },
@@ -258,7 +258,7 @@ export const Navbar: React.FC = () => {
                       <a
                         href={link.href}
                         onClick={(e) => handleNavClick(e, link.href)}
-                        className={`text-2xl font-display font-bold block py-2 ${
+                        className={`text-xl font-display font-bold block py-2 ${
                           isActive
                             ? 'text-primary dark:text-secondary'
                             : 'text-gray-800 dark:text-gray-200'
@@ -272,7 +272,23 @@ export const Navbar: React.FC = () => {
               </motion.ul>
             </nav>
 
-            <div className="text-center text-xs text-gray-400 mt-6">
+            {/* Mobile Menu Prominent CTA Button */}
+            <motion.div
+              initial={{ opacity: 0, y: 15 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.35 }}
+              className="px-4 mb-6"
+            >
+              <a
+                href="#contact"
+                onClick={(e) => handleNavClick(e, '#contact')}
+                className="w-full py-3.5 rounded-full font-bold text-white text-center gradient-pink-purple shadow-lg shadow-primary/20 flex items-center justify-center gap-2"
+              >
+                Book Raju Events Now
+              </a>
+            </motion.div>
+
+            <div className="text-center text-xs text-gray-400 mt-2">
               © {new Date().getFullYear()} Raju Events. All rights reserved.
             </div>
           </motion.div>
