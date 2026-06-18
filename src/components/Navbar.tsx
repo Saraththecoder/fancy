@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Sun, Moon, Volume2, VolumeX, Menu, X } from 'lucide-react'
+import { useNavigate, useLocation } from 'react-router-dom'
 import { useSound } from './providers/SoundProvider'
 
 interface NavLink {
@@ -26,9 +27,12 @@ export const Navbar: React.FC = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const [darkMode, setDarkMode] = useState(false)
   const { soundEnabled, setSoundEnabled, playHover, playClick } = useSound()
+  const navigate = useNavigate()
+  const location = useLocation()
 
   // Track active section and scroll state
   useEffect(() => {
+    if (location.pathname !== '/') return
     const handleScroll = () => {
       // Toggle scrolled class
       setIsScrolled(window.scrollY > 50)
@@ -51,7 +55,7 @@ export const Navbar: React.FC = () => {
 
     window.addEventListener('scroll', handleScroll)
     return () => window.removeEventListener('scroll', handleScroll)
-  }, [])
+  }, [location])
 
   // Dark Mode toggle handler
   useEffect(() => {
@@ -85,18 +89,23 @@ export const Navbar: React.FC = () => {
     playClick()
     setMobileMenuOpen(false)
     const targetId = href.substring(1)
-    const targetElement = document.getElementById(targetId)
-    if (targetElement) {
-      const offset = 80 // navbar height
-      const bodyRect = document.body.getBoundingClientRect().top
-      const elementRect = targetElement.getBoundingClientRect().top
-      const elementPosition = elementRect - bodyRect
-      const offsetPosition = elementPosition - offset
 
-      window.scrollTo({
-        top: offsetPosition,
-        behavior: 'smooth',
-      })
+    if (location.pathname === '/') {
+      const targetElement = document.getElementById(targetId)
+      if (targetElement) {
+        const offset = 80 // navbar height
+        const bodyRect = document.body.getBoundingClientRect().top
+        const elementRect = targetElement.getBoundingClientRect().top
+        const elementPosition = elementRect - bodyRect
+        const offsetPosition = elementPosition - offset
+
+        window.scrollTo({
+          top: offsetPosition,
+          behavior: 'smooth',
+        })
+      }
+    } else {
+      navigate('/', { state: { scrollTo: targetId } })
     }
   }
 

@@ -1,5 +1,6 @@
 import React from 'react'
 import { motion } from 'framer-motion'
+import { useNavigate } from 'react-router-dom'
 import { useSound } from '../providers/SoundProvider'
 
 interface Service {
@@ -7,6 +8,8 @@ interface Service {
   title: string
   description: string
   gradient: string
+  image: string
+  slug: string
 }
 
 const services: Service[] = [
@@ -40,6 +43,8 @@ const services: Service[] = [
     title: 'Balloon Decorations',
     description: 'Bespoke balloon arches, organic garlands, bouquets, and ceiling balloon drops tailored to your theme colors.',
     gradient: 'from-[#FF4D6D] to-[#7C3AED]',
+    image: 'https://images.unsplash.com/photo-1530103862676-de8c9debad1d?q=80&w=600&auto=format&fit=crop',
+    slug: 'balloon-decorations',
   },
   {
     icon: (
@@ -68,6 +73,8 @@ const services: Service[] = [
     title: 'Birthday Decorations',
     description: 'Complete celebration setups, cake tables, party signages, lighting, and tablescapes for all ages.',
     gradient: 'from-[#FFD166] to-[#FF8A00]',
+    image: 'https://images.unsplash.com/photo-1513151233558-d860c5398176?q=80&w=600&auto=format&fit=crop',
+    slug: 'birthday-decorations',
   },
   {
     icon: (
@@ -90,6 +97,8 @@ const services: Service[] = [
     title: '3D Theme Decorations',
     description: 'Immersive 3D cutout backdrops, custom character setups, structures, and stages that bring fantasy worlds to life.',
     gradient: 'from-[#7C3AED] to-[#3B82F6]',
+    image: 'https://images.unsplash.com/photo-1517457373958-b7bdd4587205?q=80&w=600&auto=format&fit=crop',
+    slug: '3d-theme-decorations',
   },
   {
     icon: (
@@ -112,6 +121,8 @@ const services: Service[] = [
     title: '2D Theme Decorations',
     description: 'Beautiful 2D themed prints, custom backdrops, character cutouts, and wall decals for elegant settings.',
     gradient: 'from-pink-400 to-rose-600',
+    image: 'https://images.unsplash.com/photo-1464366400600-7168b8af9bc3?q=80&w=600&auto=format&fit=crop',
+    slug: '2d-theme-decorations',
   },
   {
     icon: (
@@ -135,6 +146,8 @@ const services: Service[] = [
     title: 'Customized Decorations',
     description: 'Bespoke designs tailored from scratch to match your specific vision, dreams, and venue requirements.',
     gradient: 'from-amber-400 to-orange-500',
+    image: 'https://images.unsplash.com/photo-1527529482837-4698179dc6ce?q=80&w=600&auto=format&fit=crop',
+    slug: 'customized-decorations',
   },
   {
     icon: (
@@ -158,39 +171,18 @@ const services: Service[] = [
     title: 'Theme Backgrounds',
     description: 'Premium photobooths and media walls, complete with props, lighting, and professional backdrop panels.',
     gradient: 'from-violet-500 to-fuchsia-600',
+    image: 'https://images.unsplash.com/photo-1533174072545-7a4b6ad7a6c3?q=80&w=600&auto=format&fit=crop',
+    slug: 'theme-backgrounds',
   },
 ]
 
 export const Services: React.FC = () => {
   const { playHover, playClick } = useSound()
+  const navigate = useNavigate()
 
-  const handleServiceClick = (title: string) => {
+  const handleServiceClick = (slug: string) => {
     playClick()
-    
-    // Map service title to Zod theme select options in Contact form
-    let optionValue = ""
-    if (title.includes("Balloon")) optionValue = "Balloon Decorations"
-    else if (title.includes("2D Theme")) optionValue = "2D Theme Decorations"
-    else if (title.includes("3D Theme")) optionValue = "3D Theme Decorations"
-    else if (title.includes("Custom")) optionValue = "Custom Decorations"
-    else if (title.includes("Backgrounds") || title.includes("Backdrop")) optionValue = "Backdrop/Photo Booth"
-    else if (title.includes("Birthday")) optionValue = "Birthday Decorations"
-    
-    if (optionValue) {
-      const event = new CustomEvent('select-theme', { detail: optionValue })
-      window.dispatchEvent(event)
-    }
-
-    const contactSec = document.getElementById('contact')
-    if (contactSec) {
-      const offset = 80
-      const bodyRect = document.body.getBoundingClientRect().top
-      const elementRect = contactSec.getBoundingClientRect().top
-      window.scrollTo({
-        top: elementRect - bodyRect - offset,
-        behavior: 'smooth',
-      })
-    }
+    navigate(`/services/${slug}`)
   }
 
   // Custom 3D Tilt Card implementation
@@ -268,45 +260,56 @@ export const Services: React.FC = () => {
               onMouseMove={handleMouseMove}
               onMouseLeave={handleMouseLeave}
               onMouseEnter={playHover}
-              onClick={() => handleServiceClick(service.title)}
+              onClick={() => handleServiceClick(service.slug)}
               style={{ transformStyle: 'preserve-3d', transition: 'transform 0.15s ease-out' }}
               className="gradient-border-container shadow-lg shadow-primary/3 interactive-card cursor-pointer"
             >
               <div
-                className="glass-card rounded-2xl p-8 flex flex-col h-full items-start select-none relative overflow-hidden"
+                className="glass-card rounded-2xl flex flex-col h-full items-stretch select-none relative overflow-hidden"
                 style={{ transform: 'translateZ(20px)', transformStyle: 'preserve-3d' }}
               >
-                {/* Glow Spot */}
-                <div className="absolute -right-10 -top-10 w-24 h-24 bg-gradient-to-br from-white/10 to-transparent dark:from-white/5 rounded-full pointer-events-none" />
-
-                {/* Icon wrapper */}
-                <div
-                  className={`w-14 h-14 rounded-2xl bg-gradient-to-br ${service.gradient} text-white flex items-center justify-center mb-6 shadow-md transition-transform duration-500 group-hover:scale-110 group-hover:rotate-6`}
-                  style={{ transform: 'translateZ(40px)' }}
-                >
-                  {service.icon}
+                {/* Card Image Header */}
+                <div className="w-full aspect-[16/10] overflow-hidden relative">
+                  <img
+                    src={service.image}
+                    alt={service.title}
+                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                    loading="lazy"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent opacity-60" />
                 </div>
 
-                {/* Title */}
-                <h3
-                  className="font-display font-bold text-xl text-slate-800 dark:text-white mb-3"
-                  style={{ transform: 'translateZ(30px)' }}
-                >
-                  {service.title}
-                </h3>
+                {/* Text details below the image */}
+                <div className="p-6 pt-8 flex flex-col items-start flex-grow relative">
+                  {/* Floating Icon overlapping image */}
+                  <div
+                    className={`absolute -top-7 right-6 w-12 h-12 rounded-2xl bg-gradient-to-br ${service.gradient} text-white flex items-center justify-center shadow-lg transition-transform duration-500 group-hover:scale-110 group-hover:rotate-6 z-10`}
+                    style={{ transform: 'translateZ(40px)' }}
+                  >
+                    {service.icon}
+                  </div>
 
-                {/* Description */}
-                <p
-                  className="text-gray-500 dark:text-gray-400 text-sm leading-relaxed"
-                  style={{ transform: 'translateZ(20px)' }}
-                >
-                  {service.description}
-                </p>
+                  {/* Title */}
+                  <h3
+                    className="font-display font-bold text-lg text-slate-800 dark:text-white mb-2"
+                    style={{ transform: 'translateZ(30px)' }}
+                  >
+                    {service.title}
+                  </h3>
 
-                {/* Micro-arrow indicator */}
-                <div className="mt-8 flex items-center gap-2 text-xs font-semibold text-primary dark:text-secondary group-hover:translate-x-1 transition-transform">
-                  <span>Learn More</span>
-                  <span className="text-sm font-bold">→</span>
+                  {/* Description */}
+                  <p
+                    className="text-gray-500 dark:text-gray-400 text-xs sm:text-sm leading-relaxed flex-grow"
+                    style={{ transform: 'translateZ(20px)' }}
+                  >
+                    {service.description}
+                  </p>
+
+                  {/* Micro-arrow indicator */}
+                  <div className="mt-6 flex items-center gap-2 text-xs font-semibold text-primary dark:text-secondary group-hover:translate-x-1 transition-transform">
+                    <span>Learn More</span>
+                    <span className="text-sm font-bold">→</span>
+                  </div>
                 </div>
               </div>
             </motion.div>
