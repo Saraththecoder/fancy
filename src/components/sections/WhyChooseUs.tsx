@@ -1,6 +1,6 @@
 import React from 'react'
 import { motion } from 'framer-motion'
-import { Sparkles, ShieldCheck, Clock, Heart, ArrowUpRight } from 'lucide-react'
+import { ArrowUpRight } from 'lucide-react'
 import { useSound } from '../providers/SoundProvider'
 
 interface ChoiceCard {
@@ -12,25 +12,76 @@ interface ChoiceCard {
 
 const choices: ChoiceCard[] = [
   {
-    icon: <Sparkles className="w-6 h-6" />,
+    icon: (
+      <svg viewBox="0 0 64 64" className="w-6 h-6">
+        <defs>
+          <linearGradient id="wand-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stopColor="#FFF" />
+            <stop offset="100%" stopColor="#FF8A00" />
+          </linearGradient>
+        </defs>
+        <path d="M48 10 L50 14 L54 16 L50 18 L48 22 L46 18 L42 16 L46 14 Z" fill="#FFD166" className="animate-pulse" />
+        <path d="M22 6 L24 8 L27 9 L24 10 L22 12 L20 10 L17 9 L20 8 Z" fill="#FFD166" className="animate-pulse" />
+        <path d="M8 56 L46 18" stroke="url(#wand-grad)" strokeWidth="4" strokeLinecap="round" />
+        <path d="M46 18 L50 14" stroke="#FF4D6D" strokeWidth="5" strokeLinecap="round" />
+        <circle cx="48" cy="16" r="6" fill="#FFF" className="animate-ping" opacity="0.3" />
+      </svg>
+    ),
     title: 'Bespoke Creativity',
     description: 'We don’t do cookie-cutter events. Every backdrop, organic arch, and 3D prop is designed to fit your unique theme.',
     color: 'from-pink-500 to-rose-600',
   },
   {
-    icon: <ShieldCheck className="w-6 h-6" />,
+    icon: (
+      <svg viewBox="0 0 64 64" className="w-6 h-6">
+        <defs>
+          <linearGradient id="shield-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stopColor="#FFF" />
+            <stop offset="100%" stopColor="#7C3AED" />
+          </linearGradient>
+        </defs>
+        <path d="M12 10 L32 4 L52 10 L52 32 C52 48 32 60 32 60 C32 60 12 48 12 32 Z" fill="none" stroke="url(#shield-grad)" strokeWidth="3" strokeLinejoin="round" />
+        <path d="M22 30 L28 36 L42 22" fill="none" stroke="#FFF" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round" />
+        <path d="M26 14 L32 18 L38 14" fill="none" stroke="#FFD166" strokeWidth="2" />
+      </svg>
+    ),
     title: 'Premium Quality & Materials',
     description: 'We use high-grade biodegradable latex balloons, sturdy customized 3D frames, and professional studio lighting.',
     color: 'from-violet-500 to-purple-600',
   },
   {
-    icon: <Clock className="w-6 h-6" />,
+    icon: (
+      <svg viewBox="0 0 64 64" className="w-6 h-6">
+        <defs>
+          <linearGradient id="clock-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stopColor="#FFF" />
+            <stop offset="100%" stopColor="#FFD166" />
+          </linearGradient>
+        </defs>
+        <path d="M4 22 L14 22 M2 32 L12 32 M6 42 L16 42" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" opacity="0.5" />
+        <circle cx="36" cy="34" r="20" fill="none" stroke="url(#clock-grad)" strokeWidth="3" />
+        <path d="M32 14 L40 14 M36 14 L36 10" stroke="currentColor" strokeWidth="3" strokeLinecap="round" />
+        <path d="M36 34 L36 24 M36 34 L44 34" stroke="#FFF" strokeWidth="2.5" strokeLinecap="round" />
+      </svg>
+    ),
     title: 'Flawless Punctuality',
     description: 'Time is everything. Our setup crews coordinate ahead of schedule so your venue looks pristine before the first guest steps in.',
     color: 'from-amber-400 to-amber-600',
   },
   {
-    icon: <Heart className="w-6 h-6" />,
+    icon: (
+      <svg viewBox="0 0 64 64" className="w-6 h-6">
+        <defs>
+          <linearGradient id="coin-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stopColor="#FFD166" />
+            <stop offset="100%" stopColor="#FF8A00" />
+          </linearGradient>
+        </defs>
+        <path d="M22 40 L16 60 L28 52 L40 60 L34 40" fill="#FF4D6D" />
+        <circle cx="28" cy="28" r="20" fill="url(#coin-grad)" stroke="#FFF" strokeWidth="2" />
+        <path d="M28 16 L31 22 L38 23 L33 28 L35 35 L28 31 L21 35 L23 28 L18 23 L25 22 Z" fill="#FFF" />
+      </svg>
+    ),
     title: 'Affordable Magic',
     description: 'High-end decorations shouldn’t break the bank. We offer transparent pricing structures and customized packages.',
     color: 'from-emerald-400 to-teal-500',
