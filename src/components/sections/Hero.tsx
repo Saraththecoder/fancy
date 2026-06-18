@@ -240,7 +240,7 @@ export const Hero: React.FC = () => {
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="relative w-80 h-80 sm:w-96 sm:h-96 rounded-2xl overflow-hidden shadow-2xl shadow-primary/10 border border-white/20 flex items-center justify-center gradient-pink-purple/20"
+            className="relative w-72 h-72 sm:w-96 sm:h-96 rounded-2xl overflow-hidden shadow-2xl shadow-primary/10 border border-white/20 flex items-center justify-center gradient-pink-purple/20"
           >
             {/* Central visual placeholder with corporate logo */}
             <div className="absolute inset-0 flex flex-col items-center justify-center p-8 text-center bg-white/10 dark:bg-black/15 backdrop-blur-md">
@@ -263,7 +263,7 @@ export const Hero: React.FC = () => {
             initial={{ opacity: 0, x: -30, y: 20 }}
             animate={{ opacity: 1, x: 0, y: 0 }}
             transition={{ duration: 0.8, delay: 0.4 }}
-            className="absolute -left-6 top-10 p-4 rounded-2xl glass-card border border-white/30 shadow-lg flex items-center gap-3 backdrop-blur-lg max-w-[200px]"
+            className="hidden sm:flex absolute -left-6 top-10 p-4 rounded-2xl glass-card border border-white/30 shadow-lg items-center gap-3 backdrop-blur-lg max-w-[200px]"
           >
             <div className="w-10 h-10 rounded-full gradient-yellow-orange flex items-center justify-center text-white shrink-0">
               <Sparkles className="w-5 h-5" />
@@ -279,7 +279,7 @@ export const Hero: React.FC = () => {
             initial={{ opacity: 0, x: 30, y: -20 }}
             animate={{ opacity: 1, x: 0, y: 0 }}
             transition={{ duration: 0.8, delay: 0.5 }}
-            className="absolute -right-6 bottom-10 p-4 rounded-2xl glass-card border border-white/30 shadow-lg flex items-center gap-3 backdrop-blur-lg max-w-[200px]"
+            className="hidden sm:flex absolute -right-6 bottom-10 p-4 rounded-2xl glass-card border border-white/30 shadow-lg items-center gap-3 backdrop-blur-lg max-w-[200px]"
           >
             <div className="w-10 h-10 rounded-full gradient-pink-purple flex items-center justify-center text-white shrink-0">
               <Star className="w-5 h-5 fill-current" />

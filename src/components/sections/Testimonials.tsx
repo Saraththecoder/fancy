@@ -173,14 +173,14 @@ export const Testimonials: React.FC = () => {
           <button
             onClick={handlePrev}
             onMouseEnter={playHover}
-            className="absolute -left-4 sm:-left-12 top-1/2 -translate-y-1/2 p-3 bg-white dark:bg-dark-card hover:bg-primary dark:hover:bg-primary text-slate-700 dark:text-white hover:text-white dark:hover:text-white rounded-full shadow-lg border border-gray-100 dark:border-white/5 transition-all duration-300 z-10 cursor-none interactive-card"
+            className="hidden sm:flex absolute -left-12 top-1/2 -translate-y-1/2 p-3 bg-white dark:bg-dark-card hover:bg-primary dark:hover:bg-primary text-slate-700 dark:text-white hover:text-white dark:hover:text-white rounded-full shadow-lg border border-gray-100 dark:border-white/5 transition-all duration-300 z-10 cursor-none interactive-card items-center justify-center"
           >
             <ChevronLeft className="w-5 h-5" />
           </button>
           <button
             onClick={handleNext}
             onMouseEnter={playHover}
-            className="absolute -right-4 sm:-right-12 top-1/2 -translate-y-1/2 p-3 bg-white dark:bg-dark-card hover:bg-primary dark:hover:bg-primary text-slate-700 dark:text-white hover:text-white dark:hover:text-white rounded-full shadow-lg border border-gray-100 dark:border-white/5 transition-all duration-300 z-10 cursor-none interactive-card"
+            className="hidden sm:flex absolute -right-12 top-1/2 -translate-y-1/2 p-3 bg-white dark:bg-dark-card hover:bg-primary dark:hover:bg-primary text-slate-700 dark:text-white hover:text-white dark:hover:text-white rounded-full shadow-lg border border-gray-100 dark:border-white/5 transition-all duration-300 z-10 cursor-none interactive-card items-center justify-center"
           >
             <ChevronRight className="w-5 h-5" />
           </button>

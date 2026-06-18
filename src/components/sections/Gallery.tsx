@@ -227,25 +227,17 @@ export const Gallery: React.FC = () => {
             >
               {/* Topbar Details */}
               <div className="absolute top-4 left-6 right-6 flex justify-between items-center z-10 text-white">
-                <span className="font-display font-medium text-sm tracking-wider uppercase opacity-80">
-                  {filteredItems[lightboxIndex].title} ({lightboxIndex + 1} / {filteredItems.length})
+                <span className="font-display font-medium text-xs sm:text-sm tracking-wider uppercase opacity-80 truncate max-w-[75%]">
+                  {filteredItems[lightboxIndex].title}
                 </span>
                 {/* Close Button */}
                 <button
                   onClick={closeLightbox}
-                  className="p-3 bg-white/10 hover:bg-white/20 rounded-full text-white transition-colors cursor-none"
+                  className="p-2.5 bg-white/10 hover:bg-white/20 rounded-full text-white transition-colors cursor-none"
                 >
-                  <X className="w-6 h-6" />
+                  <X className="w-5 h-5" />
                 </button>
               </div>
-
-              {/* Prev Button */}
-              <button
-                onClick={prevImage}
-                className="absolute left-6 top-1/2 -translate-y-1/2 p-3 bg-white/10 hover:bg-white/20 rounded-full text-white transition-colors cursor-none z-10"
-              >
-                <ChevronLeft className="w-6 h-6" />
-              </button>
 
               {/* Main Image View */}
               <motion.div
@@ -254,23 +246,34 @@ export const Gallery: React.FC = () => {
                 animate={{ scale: 1, opacity: 1 }}
                 exit={{ scale: 0.95, opacity: 0 }}
                 transition={{ duration: 0.3 }}
-                className="max-w-4xl max-h-[80vh] overflow-hidden rounded-xl border border-white/10"
+                className="max-w-4xl max-h-[70vh] overflow-hidden rounded-xl border border-white/10 shadow-2xl"
                 onClick={(e) => e.stopPropagation()}
               >
                 <img
                   src={filteredItems[lightboxIndex].src}
                   alt={filteredItems[lightboxIndex].title}
-                  className="max-w-full max-h-[80vh] object-contain select-none"
+                  className="max-w-full max-h-[70vh] object-contain select-none"
                 />
               </motion.div>
 
-              {/* Next Button */}
-              <button
-                onClick={nextImage}
-                className="absolute right-6 top-1/2 -translate-y-1/2 p-3 bg-white/10 hover:bg-white/20 rounded-full text-white transition-colors cursor-none z-10"
-              >
-                <ChevronRight className="w-6 h-6" />
-              </button>
+              {/* Bottom Navigation Controls */}
+              <div className="absolute bottom-6 left-1/2 -translate-x-1/2 flex items-center gap-4 z-10">
+                <button
+                  onClick={prevImage}
+                  className="p-3 bg-white/10 hover:bg-white/20 rounded-full text-white transition-colors cursor-none"
+                >
+                  <ChevronLeft className="w-5 h-5" />
+                </button>
+                <span className="text-white text-xs font-semibold tracking-widest bg-black/50 px-4 py-2 rounded-full backdrop-blur-md border border-white/10 select-none">
+                  {lightboxIndex + 1} / {filteredItems.length}
+                </span>
+                <button
+                  onClick={nextImage}
+                  className="p-3 bg-white/10 hover:bg-white/20 rounded-full text-white transition-colors cursor-none"
+                >
+                  <ChevronRight className="w-5 h-5" />
+                </button>
+              </div>
             </motion.div>
           )}
         </AnimatePresence>
