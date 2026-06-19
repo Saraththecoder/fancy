@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react'
 import { Services } from '../components/sections/Services'
+import { PageHeader } from '../components/ui/PageHeader'
 
 export const ServicesPage: React.FC = () => {
   useEffect(() => {
@@ -7,7 +8,12 @@ export const ServicesPage: React.FC = () => {
   }, [])
 
   return (
-    <div className="pt-20 bg-brand-bg dark:bg-dark-bg transition-colors duration-300 min-h-screen">
+    <div className="bg-brand-bg dark:bg-dark-bg transition-colors duration-300 min-h-screen">
+      <PageHeader
+        title="Our Decoration Services"
+        subtitle="From organic balloon garlands to complete custom 3D theme stage setups."
+        currentPage="Services"
+      />
       <Services />
     </div>
   )

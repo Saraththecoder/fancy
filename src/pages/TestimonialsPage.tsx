@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react'
 import { Testimonials } from '../components/sections/Testimonials'
+import { PageHeader } from '../components/ui/PageHeader'
 
 export const TestimonialsPage: React.FC = () => {
   useEffect(() => {
@@ -7,7 +8,12 @@ export const TestimonialsPage: React.FC = () => {
   }, [])
 
   return (
-    <div className="pt-20 bg-brand-bg dark:bg-dark-bg transition-colors duration-300 min-h-screen">
+    <div className="bg-brand-bg dark:bg-dark-bg transition-colors duration-300 min-h-screen">
+      <PageHeader
+        title="Client Testimonials"
+        subtitle="What happy parents and families say about their experience with Raju Events."
+        currentPage="Testimonials"
+      />
       <Testimonials />
     </div>
   )

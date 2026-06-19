@@ -151,6 +151,64 @@ export const Hero: React.FC = () => {
       </div>
 
       <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-12 gap-12 items-center relative z-20 w-full py-12">
+        {/* Interactive Glass Cards / Image Representation */}
+        <div className="lg:col-span-5 relative flex items-center justify-center">
+          {/* Main Visual Frame */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+            className="relative w-72 h-72 sm:w-96 sm:h-96 rounded-2xl overflow-hidden shadow-2xl shadow-primary/10 border border-white/20 flex items-center justify-center gradient-pink-purple/20"
+          >
+            {/* Central visual placeholder with corporate logo */}
+            <div className="absolute inset-0 flex flex-col items-center justify-center p-8 text-center bg-white/10 dark:bg-black/15 backdrop-blur-md">
+              <motion.div
+                whileHover={{ scale: 1.05, rotate: 5 }}
+                className="w-24 h-24 rounded-full overflow-hidden border-2 border-white/50 bg-white flex items-center justify-center p-2 mb-4 shadow-xl"
+              >
+                <img src="/logo.png" alt="Raju Events Logo" className="w-full h-full object-contain" />
+              </motion.div>
+              <span className="font-display font-extrabold text-2xl tracking-wide dark:text-white">Raju Events</span>
+              <span className="text-xs uppercase tracking-widest text-primary font-semibold mt-1">Birthday Decoration Specialists</span>
+            </div>
+
+            {/* Outer animated ring */}
+            <div className="absolute inset-4 rounded-xl border border-white/10 animate-pulse-slow" />
+          </motion.div>
+
+          {/* Floating Highlight Card 1 */}
+          <motion.div
+            initial={{ opacity: 0, x: -30, y: 20 }}
+            animate={{ opacity: 1, x: 0, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.4 }}
+            className="hidden sm:flex absolute -left-6 top-10 p-4 rounded-2xl glass-card border border-white/30 shadow-lg items-center gap-3 backdrop-blur-lg max-w-[200px]"
+          >
+            <div className="w-10 h-10 rounded-full gradient-yellow-orange flex items-center justify-center text-white shrink-0">
+              <Sparkles className="w-5 h-5" />
+            </div>
+            <div>
+              <div className="font-display font-black text-lg leading-none text-slate-800 dark:text-white">10+</div>
+              <div className="text-[10px] text-gray-500 font-medium uppercase mt-0.5">Years Experience</div>
+            </div>
+          </motion.div>
+
+          {/* Floating Highlight Card 2 */}
+          <motion.div
+            initial={{ opacity: 0, x: 30, y: -20 }}
+            animate={{ opacity: 1, x: 0, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.5 }}
+            className="hidden sm:flex absolute -right-6 bottom-10 p-4 rounded-2xl glass-card border border-white/30 shadow-lg items-center gap-3 backdrop-blur-lg max-w-[200px]"
+          >
+            <div className="w-10 h-10 rounded-full gradient-pink-purple flex items-center justify-center text-white shrink-0">
+              <Star className="w-5 h-5 fill-current" />
+            </div>
+            <div>
+              <div className="font-display font-black text-lg leading-none text-slate-800 dark:text-white">500+</div>
+              <div className="text-[10px] text-gray-500 font-medium uppercase mt-0.5">Magical Birthdays</div>
+            </div>
+          </motion.div>
+        </div>
+
         {/* Text Content */}
         <div className="lg:col-span-7 flex flex-col items-center lg:items-start text-center lg:text-left">
           {/* Badge */}
@@ -212,64 +270,6 @@ export const Hero: React.FC = () => {
               <Compass className="w-5 h-5" />
               <span>Explore Services</span>
             </button>
-          </motion.div>
-        </div>
-
-        {/* Interactive Glass Cards / Image Representation */}
-        <div className="lg:col-span-5 relative flex items-center justify-center">
-          {/* Main Visual Frame */}
-          <motion.div
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            className="relative w-72 h-72 sm:w-96 sm:h-96 rounded-2xl overflow-hidden shadow-2xl shadow-primary/10 border border-white/20 flex items-center justify-center gradient-pink-purple/20"
-          >
-            {/* Central visual placeholder with corporate logo */}
-            <div className="absolute inset-0 flex flex-col items-center justify-center p-8 text-center bg-white/10 dark:bg-black/15 backdrop-blur-md">
-              <motion.div
-                whileHover={{ scale: 1.05, rotate: 5 }}
-                className="w-24 h-24 rounded-full overflow-hidden border-2 border-white/50 bg-white flex items-center justify-center p-2 mb-4 shadow-xl"
-              >
-                <img src="/logo.png" alt="Raju Events Logo" className="w-full h-full object-contain" />
-              </motion.div>
-              <span className="font-display font-extrabold text-2xl tracking-wide dark:text-white">Raju Events</span>
-              <span className="text-xs uppercase tracking-widest text-primary font-semibold mt-1">Birthday Decoration Specialists</span>
-            </div>
-
-            {/* Outer animated ring */}
-            <div className="absolute inset-4 rounded-xl border border-white/10 animate-pulse-slow" />
-          </motion.div>
-
-          {/* Floating Highlight Card 1 */}
-          <motion.div
-            initial={{ opacity: 0, x: -30, y: 20 }}
-            animate={{ opacity: 1, x: 0, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.4 }}
-            className="hidden sm:flex absolute -left-6 top-10 p-4 rounded-2xl glass-card border border-white/30 shadow-lg items-center gap-3 backdrop-blur-lg max-w-[200px]"
-          >
-            <div className="w-10 h-10 rounded-full gradient-yellow-orange flex items-center justify-center text-white shrink-0">
-              <Sparkles className="w-5 h-5" />
-            </div>
-            <div>
-              <div className="font-display font-black text-lg leading-none text-slate-800 dark:text-white">10+</div>
-              <div className="text-[10px] text-gray-500 font-medium uppercase mt-0.5">Years Experience</div>
-            </div>
-          </motion.div>
-
-          {/* Floating Highlight Card 2 */}
-          <motion.div
-            initial={{ opacity: 0, x: 30, y: -20 }}
-            animate={{ opacity: 1, x: 0, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.5 }}
-            className="hidden sm:flex absolute -right-6 bottom-10 p-4 rounded-2xl glass-card border border-white/30 shadow-lg items-center gap-3 backdrop-blur-lg max-w-[200px]"
-          >
-            <div className="w-10 h-10 rounded-full gradient-pink-purple flex items-center justify-center text-white shrink-0">
-              <Star className="w-5 h-5 fill-current" />
-            </div>
-            <div>
-              <div className="font-display font-black text-lg leading-none text-slate-800 dark:text-white">500+</div>
-              <div className="text-[10px] text-gray-500 font-medium uppercase mt-0.5">Magical Birthdays</div>
-            </div>
           </motion.div>
         </div>
       </div>
